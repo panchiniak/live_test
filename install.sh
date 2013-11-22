@@ -11,16 +11,20 @@ echo -e '\n\nAutomatic installer\n'
 
 if [ "$UID" -ne "0"  ] 
   then
-  echo 'You must be root to install Live Test !'
+  echo 'You must be root to instsall Live Test !'
   exit
 fi
 
 ## BEGIN PROGRAM
 
-#echo "Type the absolut path of the project's root folder:"
 read -p "Type the absolut path of the project's root folder: " PROJECT_ROOT
 
-cd $PROJECT_ROOT
+if ! [[ -z "$PROJECT_ROOT" ]]
+then
+  cd $PROJECT_ROOT
+else
+  echo "Live Test will be installed to the current directory."
+fi
 
 if [ -d "${PWD}/tests/lib" ]; then
   echo 'You already have Live Test installed. Be happy: updating requirements...'  
@@ -71,6 +75,6 @@ hash rllangs &> /dev/null || {
 	RL_LANGS="en,pt"  > /dev/null
 }
 
-rm live_test.tar.gz
+rm ../live_test.tar.gz
 
 echo "Done. Run with: cucumber BASE_URL='<url>'"
