@@ -1,4 +1,4 @@
 live_test
 =========
 
-Just another cucumber, watir, gherrkin framework
+Just another cucumber, watir, gherkin framework
